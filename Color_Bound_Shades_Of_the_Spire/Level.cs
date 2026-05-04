@@ -405,6 +405,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     CollectablesList.Add(new ColorCollectable(Textures[10], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Red, 600));
                     break;
+                case "RTT":
+                    tiles[x, y] = new Tile(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
+                    break;
                 //Blue levels items
                 case "Ww":
                     tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.water);
@@ -427,6 +430,11 @@ namespace Color_Bound_Shades_Of_the_Spire
 
 
             }
+        }
+
+        public void resetBar()
+        {
+            UIbar = new Bar(Textures[0]);
         }
         public void DrawAll(SpriteBatch spriteBatch, Player player, LevelLoader LL, SpriteFont Font1)
         {

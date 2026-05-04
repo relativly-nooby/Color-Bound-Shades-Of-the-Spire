@@ -286,6 +286,28 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     level.HintLocation = new Vector2(-100, -100);
                                 }
                             }
+                            if (LL.CurrentLevel == LevelLoader.currentLevel.level2 && tiles[i, j].returnType() == Tile.TileType.TextTrigger)
+                            {
+                                if (rec.Intersects(tiles[i, j].GetRec()))
+                                {
+                                    if (level.room == 0)
+                                    {
+                                        level.Hint = "Collect paint to refill bar and press 1 to become red.\n While red, touch torches to light them up.\n Touch enemies to kill them. \n Torches extinguish after 5 seconds!";
+                                        level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 200, tiles[i, j].GetRec().Y - 400);
+                                    }
+                                    if (level.room == 2)
+                                    {
+                                        level.Hint = "Kill the enemies before lighting the torches!";
+                                        level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 100, tiles[i, j].GetRec().Y - 250);
+                                    }
+                                    tiles[i, j].setTex(level.Textures[12]);
+                                }
+                                else
+                                {
+                                    level.Hint = "";
+                                    level.HintLocation = new Vector2(-100, -100);
+                                }
+                            }
                             else if (tiles[i, j].returnType() == Tile.TileType.exit && rec.Intersects(tiles[i, j].GetRec()))
                             {
                                 level.room += 1;
@@ -433,6 +455,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     {
                         color = Color.White;
                         dead = false;
+                        level.resetBar();
                         respawnCheckpoint(level.checkpoint, LL);
                         UpdateRectangle();
                         deathTimer = 45;

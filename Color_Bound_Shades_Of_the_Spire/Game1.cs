@@ -88,7 +88,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[16];
-            BlockTextures[1] = new Texture2D[11];
+            BlockTextures[1] = new Texture2D[13];
             BlockTextures[2] = new Texture2D[8];
             BlockTextures[3] = new Texture2D[42];
             BlockTextures[4] = new Texture2D[16];
@@ -139,6 +139,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][8] = this.Content.Load<Texture2D>("littorch");
             BlockTextures[1][9] = this.Content.Load<Texture2D>("enemy");
             BlockTextures[1][10] = this.Content.Load<Texture2D>("colorCollectable");
+            BlockTextures[1][11] = this.Content.Load<Texture2D>("SignUnread");
+            BlockTextures[1][12] = this.Content.Load<Texture2D>("SignRead");
 
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("Tile");
@@ -206,7 +208,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][15] = this.Content.Load<Texture2D>("DungeonTileFloor");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 500, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
