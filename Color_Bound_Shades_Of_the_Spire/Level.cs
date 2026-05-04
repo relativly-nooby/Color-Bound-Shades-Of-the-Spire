@@ -25,6 +25,8 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int checkpoint;
         public float scale;
         public bool levelComplete;
+        public string Hint;
+        public Vector2 HintLocation;
         public List<YellowGiver> YGList;
         public List<YellowReciever> YRList;
         public List<YellowDoor> YDList;
@@ -62,6 +64,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             CollectablesList = new List<ColorCollectable>();
             PG = new PowerGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
             OG = new OverloadGrid(Textures[0], new Rectangle(-1000, 100, 100, 100));
+            Hint = "";
+            HintLocation = new Vector2(-100, -100);
             LoadTiles(this.fileNames);
         }
 
@@ -181,18 +185,27 @@ namespace Color_Bound_Shades_Of_the_Spire
             {
                 //basic items (dungeon)
                 case "f":
-                    tiles[x,y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                    tiles[x,y] = new Tile(Textures[13], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
+                    break;
+                case "hf":
+                    tiles[x, y] = new Tile(Textures[15], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
                     break;
                 case "0":
                     int texNum = rand.Next(8, 10);
                     tiles[x, y] = new Tile(Textures[texNum], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
-                case "E":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
+                case "EU":
+                    tiles[x, y] = new Tile(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
+                    break;
+                case "ED":
+                    tiles[x, y] = new Tile(Textures[12 ], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.exit);
                     break;
                 case "S":
                     int texNum2 = rand.Next(8, 10);
                     tiles[x, y] = new Tile(Textures[texNum2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
+                    break;
+                case "TT":
+                    tiles[x, y] = new Tile(Textures[14], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
                     break;
 
                 //yellow level items
@@ -234,6 +247,29 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 case "YsD":
                     tiles[x, y] = new Tile(Textures[15], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
+                    break;
+
+                case "Yk":
+                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.key);
+                    break;
+                case "YKD":
+                    tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
+                    break;
+                case "YLDU":
+                    tiles[x, y] = new Tile(Textures[36], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    break;
+                case "YLDD":
+                    tiles[x, y] = new Tile(Textures[37], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    break;
+                case "YBK":
+                    tiles[x, y] = new Tile(Textures[38], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.yellowKey);
+                    break;
+                case "Yc":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    CollectablesList.Add(new ColorCollectable(Textures[39], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Yellow, 180));
+                    break;
+                case "YTT":
+                    tiles[x, y] = new Tile(Textures[40], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
                     break;
 
                 //yellow lasers and varients
@@ -291,11 +327,14 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "k":
                     tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.key);
                     break;
-                case "L":
-                    tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                case "LDU":
+                    tiles[x, y] = new Tile(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
+                    break;
+                case "LDD":
+                    tiles[x, y] = new Tile(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.LevelHub);
                     break;
                 case "KD":
-                    tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
+                    tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.keyDoor);
                     break;
                 case "sU":
                     tiles[x, y] = new Tile(Textures[2], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.spike);
@@ -322,6 +361,18 @@ namespace Color_Bound_Shades_Of_the_Spire
                     break;
                 case "YED":
                     tiles[x, y] = new Tile(Textures[6], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.YellowEntrance);
+                    break;
+                case "BDDL":
+                    tiles[x, y] = new Tile(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.bossDoor1);
+                    break;
+                case "BDDR":
+                    tiles[x, y] = new Tile(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.bossDoor1);
+                    break;
+                case "BDUL":
+                    tiles[x, y] = new Tile(Textures[13], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.bossDoor1);
+                    break;
+                case "BDUR":
+                    tiles[x, y] = new Tile(Textures[14], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.bossDoor1);
                     break;
                 //red items
                 case "RDU":
@@ -377,7 +428,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             }
         }
-        public void DrawAll(SpriteBatch spriteBatch, Player player, LevelLoader LL)
+        public void DrawAll(SpriteBatch spriteBatch, Player player, LevelLoader LL, SpriteFont Font1)
         {
             if (tiles == null) return;
             for (int i = 0; i < tiles.GetLength(0); i++)
@@ -395,6 +446,8 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                         else if (LL.CurrentLevel == LevelLoader.currentLevel.level4)
                             spriteBatch.Draw(Textures[7], drawRect, Color.White);
+                        else if (LL.CurrentLevel == LevelLoader.currentLevel.level1)
+                            spriteBatch.Draw(Textures[10], drawRect, Color.White);
                         else
                             spriteBatch.Draw(Textures[1], drawRect, Color.White);
                     }
@@ -439,6 +492,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 CollectablesList[i].Draw(spriteBatch);
             }
             UIbar.Draw(spriteBatch, player);
+            spriteBatch.DrawString(Font1, Hint, HintLocation, Color.Black);
         }
     }
 }
