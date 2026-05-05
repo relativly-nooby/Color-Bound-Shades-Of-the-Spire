@@ -428,7 +428,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                                 LL.levels[4].initial = true;
                                 LL.levels[4].Hint = "";
                                 keyCount = 0;
-                                
+
                             }
                             else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
                             {

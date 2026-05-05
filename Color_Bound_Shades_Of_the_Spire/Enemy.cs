@@ -123,10 +123,13 @@ namespace Color_Bound_Shades_Of_the_Spire
                         else if (rect.Intersects(tiles[x, y].GetRec()))
                         {
                             bool onGround;
-                            if (rect.Bottom == tiles[x, y].GetRec().Bottom)
+                            if ((tiles[x, y].returnType() != Tile.TileType.floorUp && rect.Bottom == tiles[x, y].GetRec().Bottom) || (tiles[x, y].returnType() == Tile.TileType.floorUp && rect.Bottom == tiles[x, y].GetRec().Top))
                                 onGround = true;
                             else
                                 onGround = false;
+                            if (tiles[x, y].returnType() == Tile.TileType.floorUp && rect.X < tiles[x, y].GetRec().Top)
+                                onGround = false;
+
 
                             if (tiles[x, y + 1] == null)
                             {

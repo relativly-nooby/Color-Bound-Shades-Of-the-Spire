@@ -89,7 +89,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[16];
-            BlockTextures[1] = new Texture2D[14];
+            BlockTextures[1] = new Texture2D[20];
             BlockTextures[2] = new Texture2D[8];
             BlockTextures[3] = new Texture2D[42];
             BlockTextures[4] = new Texture2D[16];
@@ -130,9 +130,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][15] = this.Content.Load<Texture2D>("SignRead");
 
             BlockTextures[1][0] = this.Content.Load<Texture2D>("Untitled");
-            BlockTextures[1][1] = this.Content.Load<Texture2D>("Tile");
-            BlockTextures[1][2] = this.Content.Load<Texture2D>("SpikeU");
-            BlockTextures[1][3] = this.Content.Load<Texture2D>("checkpoint");
+            BlockTextures[1][1] = this.Content.Load<Texture2D>("redAir");
+            BlockTextures[1][2] = this.Content.Load<Texture2D>("redSpikeUp");
+            BlockTextures[1][3] = this.Content.Load<Texture2D>("redCheckpoint");
             BlockTextures[1][4] = this.Content.Load<Texture2D>("Key");
             BlockTextures[1][5] = this.Content.Load<Texture2D>("firedoorU");
             BlockTextures[1][6] = this.Content.Load<Texture2D>("firedoorD");
@@ -143,6 +143,12 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][11] = this.Content.Load<Texture2D>("SignUnread");
             BlockTextures[1][12] = this.Content.Load<Texture2D>("SignRead");
             BlockTextures[1][13] = this.Content.Load<Texture2D>("redBarrier");
+            BlockTextures[1][14] = this.Content.Load<Texture2D>("redFloor");
+            BlockTextures[1][15] = this.Content.Load<Texture2D>("redSpikeDown");
+            BlockTextures[1][16] = this.Content.Load<Texture2D>("redSpikeLeft");
+            BlockTextures[1][17] = this.Content.Load<Texture2D>("redSpikeRight");
+            BlockTextures[1][18] = this.Content.Load<Texture2D>("redFloorUp");
+            BlockTextures[1][19] = this.Content.Load<Texture2D>("redBossKey");
 
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("Tile");
