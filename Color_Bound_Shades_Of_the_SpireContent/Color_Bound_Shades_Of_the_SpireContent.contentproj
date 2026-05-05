@@ -551,11 +551,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pixil-frame-0 - 2026-05-04T201233.923.png">
-      <Name>pixil-frame-0 - 2026-05-04T201233.923</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="redAir.png">
       <Name>redAir</Name>
       <Importer>TextureImporter</Importer>
