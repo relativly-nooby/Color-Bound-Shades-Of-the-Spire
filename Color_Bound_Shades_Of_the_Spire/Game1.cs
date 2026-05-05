@@ -89,7 +89,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
             BlockTextures = new Texture2D[5][];
             BlockTextures[0] = new Texture2D[16];
-            BlockTextures[1] = new Texture2D[13];
+            BlockTextures[1] = new Texture2D[14];
             BlockTextures[2] = new Texture2D[8];
             BlockTextures[3] = new Texture2D[42];
             BlockTextures[4] = new Texture2D[16];
@@ -142,6 +142,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][10] = this.Content.Load<Texture2D>("colorCollectable");
             BlockTextures[1][11] = this.Content.Load<Texture2D>("SignUnread");
             BlockTextures[1][12] = this.Content.Load<Texture2D>("SignRead");
+            BlockTextures[1][13] = this.Content.Load<Texture2D>("redBarrier");
 
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("Tile");

@@ -183,7 +183,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                         if (tiles[i, j] == null)
                             continue;
 
-                        if (tiles[i, j].returnType() == Tile.TileType.floor || tiles[i, j].returnType() == Tile.TileType.keyDoor)
+                        if (tiles[i, j].returnType() == Tile.TileType.floor || tiles[i, j].returnType() == Tile.TileType.barrier || tiles[i, j].returnType() == Tile.TileType.floorUp || tiles[i, j].returnType() == Tile.TileType.keyDoor)
                         {
                             if (LL.CurrentLevel == LevelLoader.currentLevel.level1 && tiles[i, j].returnType() == Tile.TileType.keyDoor)
                             {
@@ -214,23 +214,26 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     velocity.Y = 0;
                                     onGround = true;
                                 }
-                                else if (velocity.Y < 0 && position.Y <= tileRec.Y + tileRec.Height && position.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f)
+                                else if (velocity.Y < 0 && position.Y <= tileRec.Y + tileRec.Height && position.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f && tiles[i, j].returnType() != Tile.TileType.floorUp)
                                 {
                                     position.Y = tileRec.Y + tileRec.Height;
                                     velocity.Y = 0;
                                 }
                             }
-                            if (position.Y + rec.Height > tileRec.Y && position.Y < tileRec.Y + tileRec.Height)
+                            if (tiles[i, j].returnType() != Tile.TileType.floorUp)
                             {
-                                if (velocity.X > 0 && position.X + rec.Width >= tileRec.X && position.X + rec.Width <= tileRec.X + velocity.X + 1f)
+                                if (position.Y + rec.Height > tileRec.Y && position.Y < tileRec.Y + tileRec.Height)
                                 {
-                                    position.X = tileRec.X - rec.Width;
-                                    velocity.X = 0;
-                                }
-                                else if (velocity.X < 0 && position.X <= tileRec.X + tileRec.Width && position.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
-                                {
-                                    position.X = tileRec.X + tileRec.Width;
-                                    velocity.X = 0;
+                                    if (velocity.X > 0 && position.X + rec.Width >= tileRec.X && position.X + rec.Width <= tileRec.X + velocity.X + 1f)
+                                    {
+                                        position.X = tileRec.X - rec.Width;
+                                        velocity.X = 0;
+                                    }
+                                    else if (velocity.X < 0 && position.X <= tileRec.X + tileRec.Width && position.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
+                                    {
+                                        position.X = tileRec.X + tileRec.Width;
+                                        velocity.X = 0;
+                                    }
                                 }
                             }
 

@@ -392,7 +392,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
                 case "OER":
-                    EnemyList.Add(new Enemy(Textures[9], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), 4, 1000));
+                    EnemyList.Add(new Enemy(Textures[9], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), 5, 1000));
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     break;
 
@@ -405,9 +405,15 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "RF":
                     tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floor);
                     break;
+                case "RFU":
+                    tiles[x, y] = new Tile(Textures[0], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.floorUp);
+                    break;
+                case "RB":
+                    tiles[x, y] = new Tile(Textures[13], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.barrier);
+                    break;
                 case "RC":
                     tiles[x, y] = new Tile(Textures[1], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
-                    CollectablesList.Add(new ColorCollectable(Textures[10], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Red, 600));
+                    CollectablesList.Add(new ColorCollectable(Textures[10], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Red, 300));
                     break;
                 case "RTT":
                     tiles[x, y] = new Tile(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);

@@ -53,11 +53,11 @@ namespace Color_Bound_Shades_Of_the_Spire
                 gravity = .75f * level.scale;
                 if ((p.rec.Y - rect.Y <= level.tileSize * tileDetectionRange && p.rec.Y > rect.Y) || (rect.Y - p.rec.Y <= level.tileSize * tileDetectionRange && p.rec.Y <= rect.Y))
                 {
-                    if (p.rec.X - rect.X < level.tileSize * tileDetectionRange && p.rec.X > rect.X)
+                    if (p.rec.X - rect.X < level.tileSize * tileDetectionRange && p.rec.X - p.rec.Width / 10 > rect.X)
                     {
                         dir = 1;
                     }
-                    else if (rect.X - p.rec.X < level.tileSize * tileDetectionRange && p.rec.X < rect.X)
+                    else if (rect.X - p.rec.X < level.tileSize * tileDetectionRange && p.rec.X + p.rec.Width/10 < rect.X)
                     {
                         dir = -1;
                     }
@@ -70,7 +70,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 {
                     dir = 0;
                 }
-
+                velocity.X = speed * dir;
                 for (int x = 0; x < tiles.GetLength(0); x++)
                 {
                     for (int y = 0; y < tiles.GetLength(1); y++)
@@ -79,10 +79,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                         {
 
                         }
-                        else if (tiles[x, y].returnType() == Tile.TileType.floor)
+                        else if (tiles[x, y].returnType() == Tile.TileType.floor || tiles[x, y].returnType() == Tile.TileType.floorUp)
                         {
                             Rectangle tileRec = tiles[x, y].GetRec();
-
                             if (rect.X + rect.Width > tileRec.X && rect.X < tileRec.X + tileRec.Width)
                             {
                                 if (velocity.Y >= 0 && rect.Y + rect.Height <= tileRec.Y + velocity.Y + 1f && rect.Y + rect.Height >= tileRec.Y)
@@ -91,23 +90,27 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     velocity.Y = 0;
                                     isOnGround = true;
                                 }
-                                else if (velocity.Y < 0 && rect.Y <= tileRec.Y + tileRec.Height && rect.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f)
+                                else if (velocity.Y < 0 && rect.Y <= tileRec.Y + tileRec.Height && rect.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f && tiles[x, y].returnType() != Tile.TileType.floorUp)
                                 {
                                     rect.Y = tileRec.Y + tileRec.Height;
                                     velocity.Y = 0;
                                 }
                             }
-                            if (rect.Y + rect.Height > tileRec.Y && rect.Y < tileRec.Y + tileRec.Height)
+                            if (tiles[x, y].returnType() != Tile.TileType.floorUp)
                             {
-                                if (velocity.X > 0 && rect.X + rect.Width >= tileRec.X && rect.X + rect.Width <= tileRec.X + velocity.X + 1f)
+                                if (rect.Y + rect.Height > tileRec.Y && rect.Y < tileRec.Y + tileRec.Height)
                                 {
-                                    rect.X = tileRec.X - rect.Width;
-                                    velocity.X = 0;
-                                }
-                                else if (velocity.X < 0 && rect.X <= tileRec.X + tileRec.Width && rect.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
-                                {
-                                    rect.X = tileRec.X + tileRec.Width;
-                                    velocity.X = 0;
+                                    if (velocity.X > 0 && rect.X + rect.Width >= tileRec.X && rect.X + rect.Width <= tileRec.X + velocity.X + 1f)
+                                    {
+                                        rect.X = tileRec.X - rect.Width;
+                                        velocity.X = 0;
+                                    }
+                                    else if (velocity.X < 0 && rect.X <= tileRec.X + tileRec.Width && rect.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
+                                    {
+                                        rect.X = tileRec.X + tileRec.Width;
+                                        velocity.X = 0;
+                                    }
+
                                 }
                             }
 
@@ -129,7 +132,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                             {
 
                             }
-                            if (tiles[x, y + 1].returnType() == Tile.TileType.floor)
+                            if (tiles[x, y + 1].returnType() == Tile.TileType.floor || tiles[x, y + 1].returnType() == Tile.TileType.floorUp)
                             {
                                 if (onGround)
                                     isOnGround = true;
@@ -157,7 +160,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                         }
                     }
                 }
-                rect.X += speed * dir;
+                rect.X += (int)velocity.X;
 
 
 
