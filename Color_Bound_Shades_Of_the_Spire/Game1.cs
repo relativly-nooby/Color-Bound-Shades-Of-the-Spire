@@ -74,7 +74,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             fileNames[1][0] = "Content/level1RR1.txt";
             fileNames[1][1] = "Content/level1RR2.txt";
             fileNames[1][2] = "Content/level1RR3.txt";
-            fileNames[1][2] = "Content/level1RR4.txt";
+            fileNames[1][3] = "Content/level1RR4.txt";
 
             fileNames[2] = new string[1];
             fileNames[2][0] = "Content/level1BR1.txt";
@@ -229,6 +229,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][13] = this.Content.Load<Texture2D>("BossDoorUL");
             BlockTextures[4][14] = this.Content.Load<Texture2D>("BossDoorUR");
             BlockTextures[4][15] = this.Content.Load<Texture2D>("DungeonTileFloor");
+            BlockTextures[4][18] = this.Content.Load<Texture2D>("firedoorU");
+            BlockTextures[4][19] = this.Content.Load<Texture2D>("firedoorD");
             BlockTextures[4][16] = this.Content.Load<Texture2D>("PlaceHolderBoss");
             BlockTextures[4][17] = this.Content.Load<Texture2D>("Stuff");
 
