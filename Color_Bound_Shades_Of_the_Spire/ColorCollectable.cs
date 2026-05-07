@@ -32,7 +32,7 @@ namespace Color_Bound_Shades_Of_the_Spire
 
         public void Update(Player player, Bar UI)
         {
-            if (player.rec.Intersects(rect) && pickupTimer == 0)
+            if (player.rec.Intersects(rect) && pickupTimer == 0 && !player.dead)
             {
                 if(color == Color.Red && UI.redSize <= UI.background.Width)
                 {
@@ -57,6 +57,11 @@ namespace Color_Bound_Shades_Of_the_Spire
                     color = Color.White;
                     
                 }
+            }
+
+            if(player.dead)
+            {
+                pickupTimer = 0;
             }
 
             if(pickupTimer > 0)
