@@ -95,7 +95,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1] = new Texture2D[20];
             BlockTextures[2] = new Texture2D[16];
             BlockTextures[3] = new Texture2D[42];
-            BlockTextures[4] = new Texture2D[18];
+            BlockTextures[4] = new Texture2D[20];
             base.Initialize();
         }
 
@@ -115,7 +115,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
             font2 = this.Content.Load<SpriteFont>("SpriteFont2");
             Logo = this.Content.Load<Texture2D>("Logo");
-
+            //tutorial
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[0][1] = this.Content.Load<Texture2D>("KeyDoor"); // unused as of now
             BlockTextures[0][2] = this.Content.Load<Texture2D>("SpikeU");
@@ -132,7 +132,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0][13] = this.Content.Load<Texture2D>("DungeonTileFloor");
             BlockTextures[0][14] = this.Content.Load<Texture2D>("SignUnread");
             BlockTextures[0][15] = this.Content.Load<Texture2D>("SignRead");
-
+            //red
             BlockTextures[1][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[1][1] = this.Content.Load<Texture2D>("redAir");
             BlockTextures[1][2] = this.Content.Load<Texture2D>("redSpikeUp");
@@ -153,7 +153,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[1][17] = this.Content.Load<Texture2D>("redSpikeRight");
             BlockTextures[1][18] = this.Content.Load<Texture2D>("redFloorUp");
             BlockTextures[1][19] = this.Content.Load<Texture2D>("redBossKey");
-
+            //blue
             BlockTextures[2][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[2][1] = this.Content.Load<Texture2D>("KeyDoor"); // unused as of now
             BlockTextures[2][2] = this.Content.Load<Texture2D>("SpikeU");
@@ -170,7 +170,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[2][13] = this.Content.Load<Texture2D>("DungeonTileFloor");
             BlockTextures[2][14] = this.Content.Load<Texture2D>("SignUnread");
             BlockTextures[2][15] = this.Content.Load<Texture2D>("SignRead");
-
+            //yellow
             BlockTextures[3][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[3][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[3][2] = this.Content.Load<Texture2D>("YSpikeU");
@@ -213,7 +213,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][39] = this.Content.Load<Texture2D>("colorCollectable");
             BlockTextures[3][40] = this.Content.Load<Texture2D>("YellowSignUnread");
             BlockTextures[3][41] = this.Content.Load<Texture2D>("YellowSignRead");
-
+            //level hub
             BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");
             BlockTextures[4][2] = this.Content.Load<Texture2D>("SpikeU");
@@ -229,10 +229,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][13] = this.Content.Load<Texture2D>("BossDoorUL");
             BlockTextures[4][14] = this.Content.Load<Texture2D>("BossDoorUR");
             BlockTextures[4][15] = this.Content.Load<Texture2D>("DungeonTileFloor");
-            BlockTextures[4][18] = this.Content.Load<Texture2D>("firedoorU");
-            BlockTextures[4][19] = this.Content.Load<Texture2D>("firedoorD");
             BlockTextures[4][16] = this.Content.Load<Texture2D>("PlaceHolderBoss");
             BlockTextures[4][17] = this.Content.Load<Texture2D>("Stuff");
+            BlockTextures[4][18] = this.Content.Load<Texture2D>("firedoorU");
+            BlockTextures[4][19] = this.Content.Load<Texture2D>("firedoorD");
 
             barTex = this.Content.Load<Texture2D>("bar");
             levelLoader = new LevelLoader(fileNames, BlockTextures, 5);

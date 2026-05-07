@@ -341,6 +341,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     position = new Vector2(tiles[i, j].GetRec().X, tiles[i, j].GetRec().Y);
                                     startPos = position;
                                     rec = tiles[i, j].GetRec();
+                                    level.checkpoint = 0;
                                     UpdateRectangle();
                                     level.initial = false;
                                     level.playerInitial = false;
@@ -477,19 +478,19 @@ namespace Color_Bound_Shades_Of_the_Spire
                                 keyCount = 0;
 
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                            else if (tiles[i, j].returnType() == Tile.TileType.RedEntrance && rec.Intersects(tiles[i, j].GetRec()) && !hasRedKey)
                             {
                                 LL.CurrentLevel = (LevelLoader.currentLevel)2;
                                 LL.levels[1].Hint = "";
                                 keyCount = 0;
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.BlueEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                            else if (tiles[i, j].returnType() == Tile.TileType.BlueEntrance && rec.Intersects(tiles[i, j].GetRec()) && !hasBlueKey)
                             {
                                 LL.CurrentLevel = (LevelLoader.currentLevel)3;
                                 LL.levels[2].Hint = "";
                                 keyCount = 0;
                             }
-                            else if (tiles[i, j].returnType() == Tile.TileType.YellowEntrance && rec.Intersects(tiles[i, j].GetRec()))
+                            else if (tiles[i, j].returnType() == Tile.TileType.YellowEntrance && rec.Intersects(tiles[i, j].GetRec()) && !hasYellowKey)
                             {
                                 LL.CurrentLevel = (LevelLoader.currentLevel)4;
                                 LL.levels[3].Hint = "";

@@ -150,9 +150,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                             }
                             else if (tiles[x + dir, y].returnType() == Tile.TileType.floor)
                             {
-                                if (isOnGround && onGround)
+                                if (isOnGround && onGround && velocity.Y > -20)
                                 {
-                                    velocity.Y -= 20f * level.scale;
+                                    velocity.Y = -20f * level.scale;
                                 }
                             }
 

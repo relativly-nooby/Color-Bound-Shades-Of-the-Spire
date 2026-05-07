@@ -357,10 +357,10 @@ namespace Color_Bound_Shades_Of_the_Spire
 
                 //level hub items
                 case "REU":
-                    tiles[x, y] = new Tile(Textures[16], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
+                    tiles[x, y] = new Tile(Textures[18], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
                     break;
                 case "RED":
-                    tiles[x, y] = new Tile(Textures[17], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
+                    tiles[x, y] = new Tile(Textures[19], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.RedEntrance);
                     break;
                 case "BE":
                     tiles[x, y] = new Tile(Textures[4], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.BlueEntrance);
