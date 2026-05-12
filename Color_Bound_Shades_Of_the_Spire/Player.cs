@@ -361,7 +361,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                             {
                                 if (level.room == 0)
                                 {
-                                    level.Hint = "Blue Level Placeholder, heres the key:";
+                                    level.Hint = "Blue Level Placeholder, here are the keys:";
                                     level.HintLocation = new Vector2(250, 300);
                                 }
                                 else if (rec.Intersects(tiles[i, j].GetRec()))
@@ -380,12 +380,12 @@ namespace Color_Bound_Shades_Of_the_Spire
                                 {
                                     if (level.room == 0)
                                     {
-                                        level.Hint = "Connect the generator in the top right to\n the recievers on the left with your ability,\n collect the color to the right and press 2";
+                                        level.Hint = "Connect the Crystal in the top right to\n the empty ones on the left with your ability,\n collect the color to the right and press 2";
                                         level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 100, tiles[i, j].GetRec().Y - 80);
                                     }
                                     if (level.room == 2)
                                     {
-                                        level.Hint = "The power grid is what keeps the blue lasers on,\n the only way to destroy it is to overload it with energy \nvia the overcharge box, connect the box to the power grid \nwith your ability to overload it";
+                                        level.Hint = "The power grid is what keeps the blue lasers on,\n the only way to destroy it is to overload it with energy \nvia the UltraCrystal, connect the Crystal to the power grid \nwith your ability to overload it";
                                         level.HintLocation = new Vector2(tiles[i, j].GetRec().X - 100, tiles[i, j].GetRec().Y - 250);
                                     }
                                     tiles[i, j].setTex(level.Textures[41]);
