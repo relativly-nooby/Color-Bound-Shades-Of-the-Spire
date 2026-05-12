@@ -129,6 +129,14 @@ namespace Color_Bound_Shades_Of_the_Spire
                         YRList[i].colision(player, Textures, YGList[j]);
                 }
             }
+            for (int i = 0; i < YRList.Count; i++)
+            {
+                if (YRList[i].isOn && YRList[i].converted)
+                {
+                    YGList.Add(new YellowGiver(Textures[12], YRList[i].R));
+                    YRList[i].converted = false;
+                }
+            }
             for (int i = 0; i < YDList.Count; i++)
             {
                 YDList[i].colision(player, this);
@@ -143,6 +151,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             PG.colision(player, this);
             OG.colision(player, this);
+
         }
         public void LoadTiles(string[] fileNames)
         {
@@ -234,10 +243,10 @@ namespace Color_Bound_Shades_Of_the_Spire
                     YDList.Add(new YellowDoor(Textures[11], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
                 case "YR":
-                    YRList.Add(new YellowReciever(Textures[13], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    YRList.Add(new YellowReciever(Textures[13], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize * 2)));
                     break;
                 case "YG":
-                    YGList.Add(new YellowGiver(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
+                    YGList.Add(new YellowGiver(Textures[12], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize * 2)));
                     break;
                 case "YS":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.start);
@@ -319,10 +328,10 @@ namespace Color_Bound_Shades_Of_the_Spire
                     YLHVList.Add(new YLaserHorizVarient(Textures[30], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
                     break;
                 case "PG":
-                    PG = new PowerGrid(Textures[33], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
+                    PG = new PowerGrid(Textures[33], new Rectangle(x * tileSize, y * tileSize, tileSize * 2, tileSize * 2));
                     break;
                 case "OG":
-                    OG = new OverloadGrid(Textures[31], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
+                    OG = new OverloadGrid(Textures[31], new Rectangle(x * tileSize, y * tileSize, tileSize * 2, tileSize * 2));
                     break;
 
 
@@ -523,13 +532,13 @@ namespace Color_Bound_Shades_Of_the_Spire
                     }
                 }
             }
-            for (int i = 0; i < YGList.Count; i++)
-            {
-                YGList[i].Draw(spriteBatch, player, this);
-            }
             for (int i = 0; i < YRList.Count; i++)
             {
                 YRList[i].Draw(spriteBatch);
+            }
+            for (int i = 0; i < YGList.Count; i++)
+            {
+                YGList[i].Draw(spriteBatch, player, this);
             }
             for (int i = 0; i < YDList.Count; i++)
             {
