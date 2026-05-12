@@ -94,7 +94,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[0] = new Texture2D[16];
             BlockTextures[1] = new Texture2D[22];
             BlockTextures[2] = new Texture2D[16];
-            BlockTextures[3] = new Texture2D[42];
+            BlockTextures[3] = new Texture2D[44];
             BlockTextures[4] = new Texture2D[20];
             base.Initialize();
         }
@@ -247,12 +247,10 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][28] = this.Content.Load<Texture2D>("YLaserHorizLVarient");
             BlockTextures[3][29] = this.Content.Load<Texture2D>("YLaserHorizMVarient");
             BlockTextures[3][30] = this.Content.Load<Texture2D>("YLaserHorizRVarient");
-
             BlockTextures[3][31] = this.Content.Load<Texture2D>("YellowOverloadCrystalOff");
             BlockTextures[3][32] = this.Content.Load<Texture2D>("YellowOverloadCrystal");
             BlockTextures[3][33] = this.Content.Load<Texture2D>("PowerGridOn");
             BlockTextures[3][34] = this.Content.Load<Texture2D>("PowerGridDestroyed");
-
             BlockTextures[3][35] = this.Content.Load<Texture2D>("WireCharged");
             BlockTextures[3][36] = this.Content.Load<Texture2D>("levelHubDoorUY");
             BlockTextures[3][37] = this.Content.Load<Texture2D>("levelHubDoorD");
@@ -260,6 +258,9 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][39] = this.Content.Load<Texture2D>("colorCollectable");
             BlockTextures[3][40] = this.Content.Load<Texture2D>("YellowSignUnread");
             BlockTextures[3][41] = this.Content.Load<Texture2D>("YellowSignRead");
+
+            BlockTextures[3][42] = this.Content.Load<Texture2D>("bottle");
+            BlockTextures[3][43] = this.Content.Load<Texture2D>("bucket");
             //level hub
             BlockTextures[4][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[4][1] = this.Content.Load<Texture2D>("Tile");

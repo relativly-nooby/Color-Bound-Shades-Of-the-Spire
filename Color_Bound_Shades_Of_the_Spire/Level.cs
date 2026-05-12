@@ -279,9 +279,17 @@ namespace Color_Bound_Shades_Of_the_Spire
                 case "YBK":
                     tiles[x, y] = new Tile(Textures[38], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.yellowKey);
                     break;
-                case "Yc":
+                case "YC":
                     tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
                     CollectablesList.Add(new ColorCollectable(Textures[39], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Yellow, 180, 30));
+                    break;
+                case "YMC":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    CollectablesList.Add(new ColorCollectable(Textures[42], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Yellow, 360, 120));
+                    break;
+                case "YBC":
+                    tiles[x, y] = new Tile(Textures[7], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.air);
+                    CollectablesList.Add(new ColorCollectable(Textures[43], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Color.Yellow, 1000, 260));
                     break;
                 case "YTT":
                     tiles[x, y] = new Tile(Textures[40], new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize), Tile.TileType.TextTrigger);
