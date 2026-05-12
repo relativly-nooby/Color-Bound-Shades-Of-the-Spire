@@ -18,11 +18,13 @@ namespace Color_Bound_Shades_Of_the_Spire
         public Rectangle R;
         public bool isOn;
         public YellowGiver activatedBy;
+        public bool converted;
         public YellowReciever(Texture2D t, Rectangle r) 
         {
             T = t;
             R = r;
             isOn = false;
+            converted = false;
         }
         public void colision(Player player, Texture2D[] textures, YellowGiver giver)
         {
@@ -31,6 +33,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                 isOn = true;
                 T = textures[14];
                 activatedBy = giver;
+                converted = true;
             }
         }
         public void Draw(SpriteBatch spriteBatch)

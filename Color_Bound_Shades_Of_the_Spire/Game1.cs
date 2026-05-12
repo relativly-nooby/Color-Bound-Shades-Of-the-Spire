@@ -24,7 +24,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         string[][] fileNames;
         Texture2D[][] BlockTextures;
         LevelLoader levelLoader;
-        Texture2D[] t;
+        Texture2D[][] t;
         Texture2D barTex;
         Texture2D Logo;
         KeyboardState oldKB;
@@ -107,10 +107,51 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            t = new Texture2D[3];
-            t[0] = this.Content.Load<Texture2D>("BlobIdle");
-            t[1] = this.Content.Load<Texture2D>("BlobRight");
-            t[2] = this.Content.Load<Texture2D>("BlobLeft");
+            t = new Texture2D[6][];
+            t[0] = new Texture2D[3];
+            t[1] = new Texture2D[6];
+            t[2] = new Texture2D[6];
+            t[3] = new Texture2D[6];
+            t[4] = new Texture2D[5];
+            t[5] = new Texture2D[5];
+
+            t[0][0] = this.Content.Load<Texture2D>("BlobIdle");
+            t[0][1] = this.Content.Load<Texture2D>("BlobRight");
+            t[0][2] = this.Content.Load<Texture2D>("BlobLeft");
+
+            t[1][0] = this.Content.Load<Texture2D>("BlobIdleDown");
+            t[1][1] = this.Content.Load<Texture2D>("BlobIdleJump1");
+            t[1][2] = this.Content.Load<Texture2D>("BlobIdleJump2");
+            t[1][3] = this.Content.Load<Texture2D>("BlobIdleJump3");
+            t[1][4] = this.Content.Load<Texture2D>("BlobIdleJump4");
+            t[1][5] = this.Content.Load<Texture2D>("BlobIdleJump5");
+
+            t[2][0] = this.Content.Load<Texture2D>("BlobRightDown");
+            t[2][1] = this.Content.Load<Texture2D>("BlobRightJump1");
+            t[2][2] = this.Content.Load<Texture2D>("BlobRightJump2");
+            t[2][3] = this.Content.Load<Texture2D>("BlobRightJump3");
+            t[2][4] = this.Content.Load<Texture2D>("BlobRightJump4");
+            t[2][5] = this.Content.Load<Texture2D>("BlobRightJump5");
+
+            t[3][0] = this.Content.Load<Texture2D>("BlobLeftDown");
+            t[3][1] = this.Content.Load<Texture2D>("BlobLeftJump1");
+            t[3][2] = this.Content.Load<Texture2D>("BlobLeftJump2");
+            t[3][3] = this.Content.Load<Texture2D>("BlobLeftJump3");
+            t[3][4] = this.Content.Load<Texture2D>("BlobLeftJump4");
+            t[3][5] = this.Content.Load<Texture2D>("BlobLeftJump5");
+            //dash right
+            t[4][0] = this.Content.Load<Texture2D>("BlobRightDash1");
+            t[4][1] = this.Content.Load<Texture2D>("BlobRightDash2");
+            t[4][2] = this.Content.Load<Texture2D>("BlobRightDash3");
+            t[4][3] = this.Content.Load<Texture2D>("BlobRightDash4");
+            t[4][4] = this.Content.Load<Texture2D>("BlobRightDash5");
+
+            t[5][0] = this.Content.Load<Texture2D>("BlobLeftDash1");
+            t[5][1] = this.Content.Load<Texture2D>("BlobLeftDash2");
+            t[5][2] = this.Content.Load<Texture2D>("BlobLeftDash3");
+            t[5][3] = this.Content.Load<Texture2D>("BlobLeftDash4");
+            t[5][4] = this.Content.Load<Texture2D>("BlobLeftDash5");
+
             p = new Player(t, new Rectangle(100, 100, 100, 100));
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
             font2 = this.Content.Load<SpriteFont>("SpriteFont2");
@@ -185,9 +226,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][9] = this.Content.Load<Texture2D>("YellowDoorUR");
             BlockTextures[3][10] = this.Content.Load<Texture2D>("YellowDoorDL");
             BlockTextures[3][11] = this.Content.Load<Texture2D>("YellowDoorDR");
+
             BlockTextures[3][12] = this.Content.Load<Texture2D>("YellowGenerator");
             BlockTextures[3][13] = this.Content.Load<Texture2D>("YellowRecieverOff");
-            BlockTextures[3][14] = this.Content.Load<Texture2D>("YellowRecieverOn");
+            BlockTextures[3][14] = this.Content.Load<Texture2D>("YellowGenerator");
+
             BlockTextures[3][15] = this.Content.Load<Texture2D>("YSpikeD");
             BlockTextures[3][16] = this.Content.Load<Texture2D>("YSpikeR");
             BlockTextures[3][17] = this.Content.Load<Texture2D>("YSpikeL");
@@ -204,10 +247,12 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[3][28] = this.Content.Load<Texture2D>("YLaserHorizLVarient");
             BlockTextures[3][29] = this.Content.Load<Texture2D>("YLaserHorizMVarient");
             BlockTextures[3][30] = this.Content.Load<Texture2D>("YLaserHorizRVarient");
-            BlockTextures[3][31] = this.Content.Load<Texture2D>("OverloadGridUnpowered");
-            BlockTextures[3][32] = this.Content.Load<Texture2D>("OverloadGridPowered");
+
+            BlockTextures[3][31] = this.Content.Load<Texture2D>("YellowOverloadCrystalOff");
+            BlockTextures[3][32] = this.Content.Load<Texture2D>("YellowOverloadCrystal");
             BlockTextures[3][33] = this.Content.Load<Texture2D>("PowerGridOn");
             BlockTextures[3][34] = this.Content.Load<Texture2D>("PowerGridDestroyed");
+
             BlockTextures[3][35] = this.Content.Load<Texture2D>("WireCharged");
             BlockTextures[3][36] = this.Content.Load<Texture2D>("levelHubDoorUY");
             BlockTextures[3][37] = this.Content.Load<Texture2D>("levelHubDoorD");

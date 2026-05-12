@@ -14,7 +14,7 @@ namespace Color_Bound_Shades_Of_the_Spire
     public class Player
     {
         Texture2D tex;
-        Texture2D[] textures;
+        Texture2D[][] textures;
         Tile checkpointTile;
         public Rectangle rec;
         public Vector2 position;
@@ -29,6 +29,13 @@ namespace Color_Bound_Shades_Of_the_Spire
         public bool hasYellowKey;
         public bool hasRedKey;
         public bool hasBlueKey;
+        public bool inAir;
+        public bool airAnimPlaying;
+        public int animNum;
+        public int directionNum;
+        public int dashNum;
+        public int dashAnimNum;
+        public int dashAnimTimer;
         public int deathTimer;
         public Vector2 startPos;
         int double_jump;
@@ -41,11 +48,18 @@ namespace Color_Bound_Shades_Of_the_Spire
         public int idleTime;
         KeyboardState oldkb;
         
-        public Player(Texture2D[] t, Rectangle r)
+        public Player(Texture2D[][] t, Rectangle r)
         {
-            tex = t[0];
+            tex = t[0][0];
             textures = t;
             idleTime = 30;
+            airAnimPlaying = false;
+            inAir = false;
+            animNum = 0;
+            directionNum = 1;
+            dashNum = 0;
+            dashAnimNum = 0;
+            dashAnimTimer = 5;
             rec = r;
             position = new Vector2(rec.X, rec.Y);
             startPos = position;
@@ -77,8 +91,15 @@ namespace Color_Bound_Shades_Of_the_Spire
             if (isDashing)
             {
                 dashDuration--;
+                dashAnimTimer--;
                 velocity.Y = 0;
                 velocity.X *= 1.05f;
+                if (dashAnimTimer == 0 && dashAnimNum < 5)
+                {
+                    tex = textures[dashNum][dashAnimNum];
+                    dashAnimNum++;
+                    dashAnimTimer = 2;
+                }
 
                 if (dashDuration <= 0)
                 {
@@ -87,30 +108,38 @@ namespace Color_Bound_Shades_Of_the_Spire
             }
             if (!dead)
             {
-                if (kb.IsKeyDown(Keys.Right))
+                if (kb.IsKeyDown(Keys.Right) && !isDashing)
                 {
-                    tex = textures[1];
+                    directionNum = 2;
+                    dashNum = 4;
+                    tex = textures[0][1];
                     velocity.X += 1f * level.scale;
                     if (kb.IsKeyDown(Keys.Space) && !oldkb.IsKeyDown(Keys.Space) && dash == 1)
                     {
                         isDashing = true;
                         dashDuration = 12;
                         dash = 0;
-                        velocity.X = 25f * level.scale;
+                        velocity.X = 35f * level.scale;
                         velocity.Y = 0;
+                        dashAnimNum = 0;
+                        dashAnimTimer = 2;
                     }
                 }
-                if (kb.IsKeyDown(Keys.Left))
+                if (kb.IsKeyDown(Keys.Left) && !isDashing)
                 {
-                    tex = textures[2];
+                    directionNum = 3;
+                    dashNum = 5;
+                    tex = textures[0][2];
                     velocity.X -= 1f * level.scale;
                     if (kb.IsKeyDown(Keys.Space) && !oldkb.IsKeyDown(Keys.Space) && dash == 1)
                     {
                         isDashing = true;
                         dashDuration = 12;
                         dash = 0;
-                        velocity.X = -25f * level.scale;
+                        velocity.X = -35f * level.scale;
                         velocity.Y = 0;
+                        dashAnimNum = 0;
+                        dashAnimTimer = 2;
                     }
                 }
                 if (kb.IsKeyDown(Keys.Up) && double_jump > 0 && !oldkb.IsKeyDown(Keys.Up))
@@ -122,6 +151,9 @@ namespace Color_Bound_Shades_Of_the_Spire
                     }
                     velocity.Y -= 20f * level.scale;
                     double_jump -= 1;
+                    inAir = true;
+                    airAnimPlaying = true;
+                    animNum = 0;          // RESET
 
                 }
             }
@@ -142,13 +174,71 @@ namespace Color_Bound_Shades_Of_the_Spire
                 idleTime--;
                 if (idleTime == 0)
                 {
-                    tex = textures[0];
+                    tex = textures[0][0];
                     idleTime = 30;
+                    directionNum = 1;
                 }
             }
             if (onGround)
             {
-             double_jump = 2;
+                double_jump = 2;
+                inAir = false;
+            }
+            if (inAir && !isDashing)
+            {
+                if (airAnimPlaying)
+                {
+                    if (directionNum == 1)
+                    {
+                        if (animNum < 6)
+                        {
+                            tex = textures[directionNum][animNum];
+                            animNum++;
+                        }
+                        else
+                        {
+                            airAnimPlaying = false;
+                            animNum = 0;
+                        }
+                    }
+                    else if (directionNum == 2)
+                    {
+                        if (animNum < 6)
+                        {
+                            tex = textures[directionNum][animNum];
+                            animNum++;
+                        }
+                        else
+                        {
+                            airAnimPlaying = false;
+                            animNum = 0;
+                        }
+                    }
+                    else if (directionNum == 3)
+                    {
+                        if (animNum < 6)
+                        {
+                            tex = textures[directionNum][animNum];
+                            animNum++;
+                        }
+                        else
+                        {
+                            airAnimPlaying = false;
+                            animNum = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    if (kb.IsKeyDown(Keys.Right))
+                        tex = textures[0][1];
+                    else if (kb.IsKeyDown(Keys.Left))
+                        tex = textures[0][2];
+                    else
+                        tex = textures[0][0];
+                }
+                    
+                   
             }
             if (dash == 0)
             {

@@ -37,6 +37,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         }
         public void Draw(SpriteBatch spriteBatch, Player player, Level level)
         {
+            spriteBatch.Draw(T, R, Color.White);
             for (int i = 0; i < level.YRList.Count; i++)
             {
                 if (player.charged && !level.YRList[i].isOn && touched)
@@ -60,7 +61,6 @@ namespace Color_Bound_Shades_Of_the_Spire
                     spriteBatch.Draw(level.Textures[18], start, null, Color.White, angle, new Vector2(0, level.Textures[18].Height / 2f), new Vector2(length / level.Textures[18].Width, 1f), SpriteEffects.None, 0f);
                 }
             }
-            spriteBatch.Draw(T, R, Color.White);
         }
     }
 }
