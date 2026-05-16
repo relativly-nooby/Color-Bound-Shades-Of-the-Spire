@@ -27,6 +27,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         Texture2D[][] t;
         Texture2D barTex;
         Texture2D Logo;
+        Texture2D Background;
         KeyboardState oldKB;
         MouseState oldM;
         Button PlayButton;
@@ -155,7 +156,8 @@ namespace Color_Bound_Shades_Of_the_Spire
             p = new Player(t, new Rectangle(100, 100, 100, 100));
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
             font2 = this.Content.Load<SpriteFont>("SpriteFont2");
-            Logo = this.Content.Load<Texture2D>("Logo");
+            Logo = this.Content.Load<Texture2D>("TitleScreenv2");
+            Background = this.Content.Load<Texture2D>("Backgroundv2");
             //tutorial
             BlockTextures[0][0] = this.Content.Load<Texture2D>("Untitled");
             BlockTextures[0][1] = this.Content.Load<Texture2D>("KeyDoor"); // unused as of now
@@ -283,7 +285,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][19] = this.Content.Load<Texture2D>("firedoorD");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 500, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
@@ -385,10 +387,11 @@ namespace Color_Bound_Shades_Of_the_Spire
             if (gameState == GameState.MainMenu)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, transform);
-                PlayButton.Draw(spriteBatch);
+                spriteBatch.Draw(Background, new Rectangle(0, 0, 1900, 1000), Color.White);
                 spriteBatch.Draw(Logo, new Rectangle(603, 50, 660, 450), Color.White);
+                PlayButton.Draw(spriteBatch);
                 spriteBatch.DrawString(font1, "Play", new Vector2(903, 536), Color.Black);
-                spriteBatch.DrawString(font2, "Press F11 to enter fullscreen", new Vector2(670, 850), Color.White);
+                spriteBatch.DrawString(font2, "Press F11 to enter fullscreen", new Vector2(670, 650), Color.White);
                 spriteBatch.End();
             }
             else if (gameState == GameState.Game)
