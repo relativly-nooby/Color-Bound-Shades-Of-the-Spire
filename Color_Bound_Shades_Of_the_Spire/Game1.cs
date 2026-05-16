@@ -108,13 +108,14 @@ namespace Color_Bound_Shades_Of_the_Spire
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            t = new Texture2D[6][];
+            t = new Texture2D[7][];
             t[0] = new Texture2D[3];
             t[1] = new Texture2D[6];
             t[2] = new Texture2D[6];
             t[3] = new Texture2D[6];
             t[4] = new Texture2D[5];
             t[5] = new Texture2D[5];
+            t[6] = new Texture2D[6];
 
             t[0][0] = this.Content.Load<Texture2D>("BlobIdle");
             t[0][1] = this.Content.Load<Texture2D>("BlobRight");
@@ -152,6 +153,13 @@ namespace Color_Bound_Shades_Of_the_Spire
             t[5][2] = this.Content.Load<Texture2D>("BlobLeftDash3");
             t[5][3] = this.Content.Load<Texture2D>("BlobLeftDash4");
             t[5][4] = this.Content.Load<Texture2D>("BlobLeftDash5");
+
+            t[6][0] = this.Content.Load<Texture2D>("BlobElectricDeath1");
+            t[6][1] = this.Content.Load<Texture2D>("BlobPoppedDeath1");
+            t[6][2] = this.Content.Load<Texture2D>("BlobPoppedDeath2");
+            t[6][3] = this.Content.Load<Texture2D>("BlobPoppedDeath3-");
+            t[6][4] = this.Content.Load<Texture2D>("BlobPoppedDeath3");
+            t[6][5] = this.Content.Load<Texture2D>("BlobPoppedDeath4");
 
             p = new Player(t, new Rectangle(100, 100, 100, 100));
             font1 = this.Content.Load<SpriteFont>("SpriteFont1");
@@ -285,7 +293,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             BlockTextures[4][19] = this.Content.Load<Texture2D>("firedoorD");
 
             barTex = this.Content.Load<Texture2D>("bar");
-            levelLoader = new LevelLoader(fileNames, BlockTextures, 5);
+            levelLoader = new LevelLoader(fileNames, BlockTextures, 1);
 
             PlayButton = new Button(BlockTextures[3][0], new Rectangle(800, 500, 250, 100), Button.ButtonType.Play);
             // TODO: use this.Content to load your game content here
