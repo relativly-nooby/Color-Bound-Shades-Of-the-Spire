@@ -21,7 +21,7 @@ namespace Color_Bound_Shades_Of_the_Spire
         public float gravity;
         public Color color;
         public bool onGround, checkPointReached, dead, electricDeath, poppedDeath, 
-            isDashing, hasYellowKey, hasRedKey, hasBlueKey, inAir, airAnimPlaying, charged, ultraCharged;
+            isDashing, hasYellowKey, hasRedKey, hasBlueKey, inAir, airAnimPlaying, charged, ultraCharged, touchingWall;
         public int animNum, directionNum, dashDirectionNum, dashAnimNum, dashAnimeTimer, 
             dashAnimTimer, deathTimer, poppedTimer, poppedNum, dash, dashTimer, dashDurtion, keyCount, idleTime, dashDuration, double_jump;
         KeyboardState oldkb;
@@ -70,6 +70,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             hasYellowKey = false;
             electricDeath = false;
             poppedDeath = false;
+            touchingWall = false;
         }
 
         public void move(KeyboardState kb, Level level)
@@ -104,7 +105,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     dashDirectionNum = 4;
                     tex = textures[0][1];
                     velocity.X += 1f * level.scale;
-                    if (kb.IsKeyDown(Keys.Space) && !oldkb.IsKeyDown(Keys.Space) && dash == 1)
+                    if (kb.IsKeyDown(Keys.Space) && !oldkb.IsKeyDown(Keys.Space) && dash == 1 && !touchingWall)
                     {
                         isDashing = true;
                         dashDuration = 12;
@@ -121,7 +122,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                     dashDirectionNum = 5;
                     tex = textures[0][2];
                     velocity.X -= 1f * level.scale;
-                    if (kb.IsKeyDown(Keys.Space) && !oldkb.IsKeyDown(Keys.Space) && dash == 1)
+                    if (kb.IsKeyDown(Keys.Space) && !oldkb.IsKeyDown(Keys.Space) && dash == 1 && !touchingWall)
                     {
                         isDashing = true;
                         dashDuration = 12;
@@ -256,6 +257,7 @@ namespace Color_Bound_Shades_Of_the_Spire
             else
             {
                 onGround = false;
+                touchingWall = false;
                 for (int i = 0; i < tiles.GetLength(0); i++)
                 {
                     for (int j = 0; j < tiles.GetLength(1); j++)
@@ -294,7 +296,7 @@ namespace Color_Bound_Shades_Of_the_Spire
                                     velocity.Y = 0;
                                     onGround = true;
                                 }
-                                else if (velocity.Y < 0 && position.Y <= tileRec.Y + tileRec.Height && position.Y >= tileRec.Y + tileRec.Height + velocity.Y - 1f && tiles[i, j].returnType() != Tile.TileType.floorUp)
+                                else if (velocity.Y < 0 && position.Y <= tileRec.Y + tileRec.Height && position.Y >= tileRec.Y + tileRec.Height + 2 * velocity.Y - 1f && tiles[i, j].returnType() != Tile.TileType.floorUp)
                                 {
                                     position.Y = tileRec.Y + tileRec.Height;
                                     velocity.Y = 0;
@@ -306,13 +308,15 @@ namespace Color_Bound_Shades_Of_the_Spire
                                 {
                                     if (velocity.X > 0 && position.X + rec.Width >= tileRec.X && position.X + rec.Width <= tileRec.X + velocity.X + 1f)
                                     {
-                                        position.X = tileRec.X - rec.Width;
+                                        position.X = tileRec.X - rec.Width - 1;
                                         velocity.X = 0;
+                                        touchingWall = true;
                                     }
                                     else if (velocity.X < 0 && position.X <= tileRec.X + tileRec.Width && position.X >= tileRec.X + tileRec.Width + velocity.X - 1f)
                                     {
-                                        position.X = tileRec.X + tileRec.Width;
+                                        position.X = tileRec.X + tileRec.Width + 1;
                                         velocity.X = 0;
+                                        touchingWall = true;
                                     }
                                 }
                             }
